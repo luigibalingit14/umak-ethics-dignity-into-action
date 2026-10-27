@@ -8,6 +8,10 @@
 node_modules
 npm-debug.log
 
+# Local self-hosted icon libraries (use CDN in HTML instead)
+bootstrap-icons/
+
+
 # Backup & Scrap reference files
 *.backup.html
 College of Liberal Arts*
