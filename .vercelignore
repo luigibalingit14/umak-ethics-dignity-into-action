@@ -3,3 +3,6 @@
 .env.*.local
 *.backup.html
 College of Liberal Arts*
+*recovery*
+*.txt
+

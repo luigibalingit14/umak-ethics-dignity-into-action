@@ -12,3 +12,8 @@ npm-debug.log
 *.backup.html
 College of Liberal Arts*
 
+# Sensitive credentials & recovery codes
+*recovery*
+*.txt
+
+
