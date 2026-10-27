@@ -1,0 +1,10 @@
+{
+  "name": "umak-ethics-dignity-into-action",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "University of Makati GEE: Ethics Final Project — Dignity into Action (Group 1)",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js"
+  }
+}

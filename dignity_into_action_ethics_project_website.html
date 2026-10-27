@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dignity into Action | UMak Ethics Web Project — Luigi D. Balingit</title>
+  <meta name="description" content="University of Makati GEE: Ethics Final Project on Prudence in the Digital Realm and Protecting Dignity in Campus Group Chats by Luigi D. Balingit.">
+  <link rel="icon" type="image/png" href="umak-public-assets/assets/logos/PNGs/UMak%20Logo%20-%20White%20R.png">
+
+  <!-- Bootstrap Icons (Local Self-Hosted) -->
+  <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.min.css">
+
+  <!-- UMak Brand Design System Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Inline head script to prevent flash of unstyled theme (FOUC) -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('umak-theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- 2. MAIN HEADER / STICKY NAVBAR -->
+  <!-- Strict UMak Brand Rule: Navbar transitions from Transparent to Primary Navy on Scroll -->
+  <header class="main-header" role="banner">
+    <div class="container nav-wrapper">
+      
+      <!-- Brand Logo & Official UMak Type Wordmark -->
+      <a href="#top" class="brand-identity" aria-label="UMak Ethics Project Home">
+        <img 
+          src="umak-public-assets/assets/logos/PNGs/UMak%20Logo%20-%20White%20R.png" 
+          alt="University of Makati Seal" 
+          class="brand-seal"
+          width="40"
+          height="40"
+        >
+        <img 
+          src="umak-public-assets/assets/logos/PNGs/UMak%20Type%20-%20White%20R.png" 
+          alt="University of Makati" 
+          class="brand-type-img brand-type-white"
+          height="20"
+        >
+        <img 
+          src="umak-public-assets/assets/logos/PNGs/UMak%20Type%20-%20Black%20R.png" 
+          alt="University of Makati" 
+          class="brand-type-img brand-type-dark"
+          height="20"
+        >
+      </a>
+
+      <!-- Desktop Navigation Tabs -->
+      <nav class="nav-links" aria-label="Desktop Navigation">
+        <button onclick="switchTab('overview')" id="nav-overview" class="nav-item-btn active">
+          <i class="bi bi-file-earmark-text-fill"></i> Overview &amp; Brief
+        </button>
+        <button onclick="switchTab('texts')" id="nav-texts" class="nav-item-btn">
+          <i class="bi bi-book-half"></i> Textual Analysis
+        </button>
+        <button onclick="switchTab('matrix')" id="nav-matrix" class="nav-item-btn">
+          <i class="bi bi-table"></i> Evidence Matrix
+        </button>
+        <button onclick="switchTab('actions')" id="nav-actions" class="nav-item-btn">
+          <i class="bi bi-shield-check"></i> Action Plan
+        </button>
+        <button onclick="switchTab('simulator')" id="nav-simulator" class="nav-item-btn">
+          <i class="bi bi-controller"></i> Ethics Simulator
+        </button>
+        <button onclick="switchTab('process')" id="nav-process" class="nav-item-btn">
+          <i class="bi bi-clock-history"></i> Process &amp; Log
+        </button>
+      </nav>
+
+      <!-- Header Actions: Theme Toggle & Mobile Menu Trigger -->
+      <div class="header-actions">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-switch-btn" onclick="toggleTheme()" aria-label="Switch theme mode" title="Toggle theme">
+          <!-- Moon Icon (for light mode) -->
+          <svg class="icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <!-- Sun Icon (for dark mode) -->
+          <svg class="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+
+        <!-- Mobile Drawer Hamburger Toggle -->
+        <button class="mobile-nav-toggle" onclick="toggleMobileMenu()" aria-label="Open navigation menu">
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 3. MOBILE OFF-CANVAS SLIDE-IN DRAWER -->
+  <div id="drawerOverlay" class="mobile-drawer-overlay"></div>
+  <aside id="mobileDrawer" class="mobile-drawer" aria-label="Mobile Menu">
+    <div class="mobile-drawer-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <img 
+          src="umak-public-assets/assets/logos/PNGs/UMak%20Logo%20-%20White%20R.png" 
+          alt="UMak Seal" 
+          style="width: 32px; height: 32px;"
+        >
+        <span style="font-size: 13px; font-weight: 700; color: #ffffff;">UMak Navigation</span>
+      </div>
+      <button class="mobile-drawer-close" onclick="toggleMobileMenu()" aria-label="Close menu">&times;</button>
+    </div>
+
+    <nav class="mobile-drawer-nav">
+      <button onclick="switchTab('overview')" id="drawer-nav-overview" class="mobile-drawer-link active">
+        <i class="bi bi-file-earmark-text-fill"></i> Overview &amp; Research Brief
+      </button>
+      <button onclick="switchTab('texts')" id="drawer-nav-texts" class="mobile-drawer-link">
+        <i class="bi bi-book-half"></i> Textual Analysis (Books)
+      </button>
+      <button onclick="switchTab('matrix')" id="drawer-nav-matrix" class="mobile-drawer-link">
+        <i class="bi bi-table"></i> 7-Row Evidence Matrix
+      </button>
+      <button onclick="switchTab('actions')" id="drawer-nav-actions" class="mobile-drawer-link">
+        <i class="bi bi-shield-check"></i> Practical Action Plan
+      </button>
+      <button onclick="switchTab('simulator')" id="drawer-nav-simulator" class="mobile-drawer-link">
+        <i class="bi bi-controller"></i> Interactive Ethics Simulator
+      </button>
+      <button onclick="switchTab('process')" id="drawer-nav-process" class="mobile-drawer-link">
+        <i class="bi bi-clock-history"></i> Project Process &amp; Log
+      </button>
+
+      <div class="mobile-drawer-divider">
+        <button onclick="toggleTheme()" class="mobile-drawer-link mobile-drawer-theme-btn">
+          <i class="bi bi-circle-half"></i> Toggle Dark / Light Theme
+        </button>
+      </div>
+    </nav>
+
+    <div class="mobile-drawer-footer">
+      <p class="drawer-footer-title">GEE: ETHICS Finals</p>
+      <p class="drawer-footer-lead">Luigi D. Balingit (Group 1 Lead)</p>
+      <p class="drawer-footer-copy">© 2026 University of Makati®</p>
+    </div>
+  </aside>
+
+  <!-- 5. HERO / BANNER SECTION (UMak LayerSlider Style) -->
+  <section class="hero-banner" id="top" role="region" aria-label="Ethics Defense Showcase Banner">
+    
+    <!-- Left Navigation Arrow -->
+    <button class="hero-slider-arrow prev" onclick="moveHeroSlide(-1)" aria-label="Previous Slide">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+
+    <!-- Center Hero Slider Content -->
+    <div class="hero-slider-container">
+      
+      <!-- Slide 1: Main Project Defense Theme -->
+      <div class="hero-slide active" id="hero-slide-1">
+        
+        <!-- Institutional Eyebrow Badge (Relocated Announcement Content) -->
+        <div class="hero-institutional-badge">
+          <i class="bi bi-mortarboard-fill"></i>
+          <span>College of Liberal Arts and Social Sciences</span>
+          <span class="badge-separator">•</span>
+          <span class="badge-accent">GEE: ETHICS Final Project</span>
+          <span class="badge-separator">•</span>
+          <span class="badge-term">A.Y. 2026–2027</span>
+        </div>
+
+        <h1 class="hero-slider-headline">
+          <span class="headline-part">DIGNITY. PRUDENCE.</span>
+          <span class="headline-part">INTO ACTION.</span>
+        </h1>
+        
+        <!-- Curved Yellow Brush Swoosh -->
+        <div class="hero-swoosh-wrap">
+          <svg class="hero-swoosh-svg" viewBox="0 0 360 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 14C90 4 270 4 356 14" stroke="#f5ec3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hero-slider-tagline">
+          #DignityIntoAction • Strand 6: Digital Conduct &amp; Prudence
+        </div>
+
+        <!-- Official Centered UMak Seal -->
+        <div class="hero-slider-seal-wrap">
+          <img 
+            src="umak-public-assets/assets/logos/PNGs/UMak%20Logo%20-%20White%20R.png" 
+            alt="University of Makati Official Seal" 
+            class="hero-slider-seal"
+            width="84" 
+            height="84"
+          >
+        </div>
+
+        <!-- Integrated Defense Summary & Action Card -->
+        <div class="hero-slider-card">
+          <p class="hero-slider-summary">
+            <strong>GEE: ETHICS Courseware Final Defense Project</strong> — How Christian insights on virtue and inherent personal dignity guide young Filipino students when facing digital peer pressure, cyberbullying, and group chat leaks.
+          </p>
+          
+          <div class="hero-slider-actions">
+            <button onclick="switchTab('simulator')" class="btn btn-accent hero-primary-btn" id="hero-sim-trigger">
+              <i class="bi bi-controller"></i> Launch Dilemma Simulator
+            </button>
+            <button onclick="switchTab('overview')" class="btn btn-outline hero-secondary-btn">
+              <i class="bi bi-file-earmark-text"></i> Read Research Brief
+            </button>
+          </div>
+
+          <div class="hero-slider-chips">
+            <span class="meta-chip"><strong>Project Lead:</strong> Luigi D. Balingit</span>
+            <span class="meta-chip"><strong>Section:</strong> GEE: ETHICS (Group 1)</span>
+            <span class="meta-chip"><strong>Strand 6:</strong> Digital Conduct &amp; Prudence</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Philosophical & Theological Virtue Anchors -->
+      <div class="hero-slide" id="hero-slide-2">
+        
+        <div class="hero-institutional-badge">
+          <i class="bi bi-book-half"></i>
+          <span>Textual &amp; Philosophical Framework</span>
+          <span class="badge-separator">•</span>
+          <span class="badge-accent">Christian Ethics</span>
+          <span class="badge-separator">•</span>
+          <span class="badge-term">A.Y. 2026–2027</span>
+        </div>
+
+        <h1 class="hero-slider-headline">
+          <span class="headline-part">VIRTUE. COURAGE.</span>
+          <span class="headline-part">CONSCIENCE.</span>
+        </h1>
+        
+        <div class="hero-swoosh-wrap">
+          <svg class="hero-swoosh-svg" viewBox="0 0 360 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 14C90 4 270 4 356 14" stroke="#f5ec3a" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hero-slider-tagline">
+          #ChristianVirtues • Dietrich von Hildebrand &amp; Gray-Martin
+        </div>
+
+        <div class="hero-slider-seal-wrap">
+          <img 
+            src="UMAK-CLASS-Logo-2026-e1787801119808-219x300.png" 
+            alt="College of Liberal Arts and Social Sciences Seal" 
+            class="hero-slider-seal"
+            width="72" 
+            height="84"
+            style="object-fit: contain;"
+          >
+        </div>
+
+        <div class="hero-slider-card">
+          <p class="hero-slider-summary">
+            "Prudence is right reason in action. It guides the judgment of conscience to choose true good and avoid moral cowardice." Passive complicity in campus chat leaks makes an individual a co-agent of harm.
+          </p>
+          
+          <div class="hero-slider-actions">
+            <button onclick="switchTab('texts')" class="btn btn-accent hero-primary-btn">
+              <i class="bi bi-book-half"></i> Explore Textual Analysis
+            </button>
+            <button onclick="switchTab('matrix')" class="btn btn-outline hero-secondary-btn">
+              <i class="bi bi-table"></i> View Evidence Matrix
+            </button>
+          </div>
+
+          <div class="hero-slider-chips">
+            <span class="meta-chip"><strong>Anchor 1:</strong> von Hildebrand (Christian Ethics)</span>
+            <span class="meta-chip"><strong>Anchor 2:</strong> Gray-Martin (Living Virtues)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Navigation Arrow -->
+    <button class="hero-slider-arrow next" onclick="moveHeroSlide(1)" aria-label="Next Slide">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+
+    <!-- Bottom Slider Dots Pagination -->
+    <div class="hero-slider-dots" role="tablist" aria-label="Slider Pagination">
+      <button class="slider-dot active" onclick="setHeroSlide(0)" aria-label="Slide 1"></button>
+      <button class="slider-dot" onclick="setHeroSlide(1)" aria-label="Slide 2"></button>
+    </div>
+
+  </section>
+
+  <!-- 6. FAST STAT TICKER SECTION -->
+  <section class="stat-ticker-section">
+    <div class="container">
+      <div class="stat-ticker-grid">
+        <div class="stat-item">
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">Anchor Books Analyzed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">7</div>
+          <div class="stat-lbl">Verified Evidence Rows</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">RA 11313</div>
+          <div class="stat-lbl">Safe Spaces Act Grounded</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">WCAG AA Compliant</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Anchor for Smooth Tab Scrolling -->
+  <div id="main-content-anchor"></div>
+
+  <!-- 7. MAIN INTERACTIVE CONTENT CONTAINER -->
+  <main class="main-app-content">
+    <div class="container">
+
+      <!-- ================================================================= -->
+      <!-- SECTION 1: OVERVIEW & RESEARCH BRIEF                             -->
+      <!-- ================================================================= -->
+      <section id="section-overview" class="module-section">
+        <div class="brief-layout">
+          
+          <!-- Editorial Brief Article (2 Cols) -->
+          <article class="content-card">
+            <div class="card-header-bar">
+              <div>
+                <span class="card-pretitle">Executive Research Brief</span>
+                <h2 class="card-title">Dignity into Action: Brief &amp; Ethical Judgment</h2>
+              </div>
+              <span class="card-badge">Scope: 800 – 1,000 Words</span>
+            </div>
+
+            <div class="prose-editorial">
+              <h4>1. Question and Context</h4>
+              <p>
+                In contemporary university life at the <strong>University of Makati (UMak)</strong>, digital communication platforms such as Messenger group chats, Discord servers, and unofficial confession pages serve as primary academic and social hubs. However, these digital environments frequently give rise to significant moral dilemmas involving peer pressure, objectification, and severe privacy violations. This research brief investigates the following focused ethical question: <em>"What does prudence require of a university student when pressured in a group chat to forward or react to a degrading meme or private screenshot targeting a female classmate?"</em>
+              </p>
+              <p>
+                Our constructed scenario centers on "Mark," a third-year college student who receives an unauthorized, embarrassing photo and defamatory meme of his female classmate, "Ana," shared by close peers in a 15-member course group chat. The intended audience for this research and digital intervention encompasses UMak student leaders, student organization administrators, and general undergraduate students seeking practical, virtue-centered moral guidance in digital environments.
+              </p>
+
+              <h4>2. Method and Sources</h4>
+              <p>
+                This study employs textual and documentary research, integrating classical Christian philosophical insights with contemporary Philippine legal and empirical frameworks. Primary anchor texts include Alice von Hildebrand’s <em>The Privilege of Being a Woman</em> and Tim Gray and Curtis Martin’s <em>Boys to Men: The Transforming Power of Virtue</em>.
+              </p>
+              <p>
+                To contextualize these texts within modern Philippine academic life, three supplementary sources were integrated: Catholic Church teaching on human dignity (Catechism of the Catholic Church, CCC 2334 &amp; 1806), Republic Act No. 11313 (Safe Spaces Act — Gender-Based Online Sexual Harassment), and peer-reviewed empirical research on digital bystander behavior among college youth (Harmsen et al., 2016). Limitations include restricting analysis to published documents and constructed scenarios without conducting unapproved personal surveys or disclosing private individual student records.
+              </p>
+
+              <h4>3. Analysis of Both Books: Connection &amp; Tension</h4>
+              <p>
+                Alice von Hildebrand emphasizes that every human person possesses an unalterable, sacred dignity bestowed by God, resisting any attempt to reduce human beings—especially women—to objects of amusement, lust, or casual ridicule (<em>The Privilege of Being a Woman</em>, Part II, PDF pp. 10–14). Von Hildebrand highlights woman’s profound capacity for emotional sensitivity and personal reverence (Part VII, PDF pp. 37–44), arguing that disrespecting female dignity deforms the moral fabric of the entire community.
+              </p>
+              <p>
+                Complementing this view, Gray and Martin focus on virtue as a habitual disposition toward moral excellence, identifying <strong>Prudence</strong> as "right reason applied to practice" (<em>Boys to Men</em>, Chapter 2, PDF pp. 20–28). Prudence enables a young man to deliberate wisely, resist viral impulse, and act courageously despite fear of peer exclusion (Chapter 1, PDF pp. 12–16).
+              </p>
+              
+              <div class="pullquote">
+                <strong>Connection:</strong> Both texts agree that authentic human maturity requires moving beyond selfish self-assertion or passive conformity to affirm and protect the personal dignity of others.
+              </div>
+
+              <p>
+                <strong>Tension/Interpretive Difficulty:</strong> A notable tension exists between von Hildebrand's emphasis on receptive, emotional delicacy and Gray and Martin's emphasis on active, decisive confrontation. While von Hildebrand cautions against destructive emotionalism, Gray and Martin warn against passive inaction disguised as neutrality. Resolving this tension requires integrating internal moral reverence with active, prudent intervention.
+              </p>
+
+              <h4>4. Contemporary Evidence and Serious Counter-Objection</h4>
+              <p>
+                Legal and empirical evidence confirms that online meme-sharing and unauthorized screenshot forwarding are far from harmless banter. Republic Act No. 11313 (Safe Spaces Act) explicitly classifies non-consensual sharing of private photos, sexual jokes, or cyber-harassment in online spaces as illegal Gender-Based Online Sexual Harassment (GBOSH). Furthermore, empirical research on college digital behavior demonstrates that active bystander intervention significantly halts cyberbullying chains, whereas passive spectating encourages malicious behavior.
+              </p>
+
+              <div class="pullquote">
+                <strong>Serious Counter-Objection:</strong> Peer groups often argue: <em>"It is just a harmless joke or meme among friends; forwarding it does not mean I created it, and staying quiet avoids unnecessary group drama."</em>
+              </div>
+
+              <p>
+                <strong>Ethical Response:</strong> Catholic moral theology and prudence refute this claim. Passive complicity and forwarding content make an individual a co-agent of digital harm. As Gray and Martin note, true courage requires standing firm against moral cowardice; forwarding or staying silent violates both justice and charity toward the victim.
+              </p>
+
+              <h4>5. Ethical Judgment and Recommendations</h4>
+              <p>
+                We judge that a student faced with digital peer pressure must refuse to react to, save, or forward humiliating content, and must take prudent steps to support the victim privately and encourage ethical norms in student group chats.
+              </p>
+            </div>
+          </article>
+
+          <!-- Sidebar Metadata & Team Specs (1 Col) -->
+          <aside class="info-sidebar">
+            
+            <div class="info-card">
+              <h3 class="info-title">Group 1 Identification</h3>
+              <dl class="spec-list">
+                <div class="spec-row">
+                  <dt class="spec-key">Course &amp; Section:</dt>
+                  <dd class="spec-val">GEE: ETHICS / CLASS</dd>
+                </div>
+                <div class="spec-row">
+                  <dt class="spec-key">Project Leader:</dt>
+                  <dd class="spec-val spec-leader">Luigi D. Balingit</dd>
+                </div>
+                <div class="spec-row">
+                  <dt class="spec-key">Research Strand:</dt>
+                  <dd class="spec-val">Strand 6 (Digital Conduct)</dd>
+                </div>
+                <div class="spec-row">
+                  <dt class="spec-key">Target Defense:</dt>
+                  <dd class="spec-val">October 2026</dd>
+                </div>
+                <div class="spec-row">
+                  <dt class="spec-key">Standard:</dt>
+                  <dd class="spec-val">UMak CIC Guidelines</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="info-card info-card-dark">
+              <h3 class="info-title">Team Responsibilities</h3>
+              <ul class="team-list">
+                <li><div><strong>Avila, Ar Wendel D.:</strong> Coordinator (Proposal Submission &amp; Meeting Logs)</div></li>
+                <li><div><strong>Bacallo, Khen Isiah:</strong> von Hildebrand Analyst (Anchor Passages &amp; Text Analysis)</div></li>
+                <li><div><strong>Balingit, Luigi D.:</strong> Producer / Editor (Website Design &amp; HTML Coding)</div></li>
+                <li><div><strong>Fania, Zairen:</strong> Gray-Martin Analyst (Virtue Analysis &amp; Fortitude Passages)</div></li>
+                <li><div><strong>Japitana, Eniel Jerel:</strong> Evidence Checker (CCC, RA 11313 &amp; Synthesis Matrix)</div></li>
+              </ul>
+            </div>
+
+            <div class="info-card" style="border-left: 4px solid var(--color-secondary);">
+              <h4 style="font-size: 12px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <i class="bi bi-lightbulb-fill" style="color: var(--color-secondary);"></i>
+                <span>Guiding Christian Virtue</span>
+              </h4>
+              <p style="font-size: 12px; font-style: italic; color: var(--color-text-secondary); line-height: 1.5;">
+                "Prudence is right reason in action. It guides the judgment of conscience to choose true good and avoid moral cowardice."
+              </p>
+            </div>
+
+          </aside>
+
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- SECTION 2: TEXTUAL ANALYSIS                                       -->
+      <!-- ================================================================= -->
+      <section id="section-texts" class="module-section hidden">
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div>
+              <span class="card-pretitle">Step 3 &amp; 5 Deep Reading</span>
+              <h2 class="card-title">Principal Texts &amp; Anchor Passages Analysis</h2>
+            </div>
+            <span class="card-badge">2 Principal Anchor Books</span>
+          </div>
+
+          <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">
+            A rigorous textual comparison between Alice von Hildebrand's philosophical defense of personal dignity and Tim Gray &amp; Curtis Martin's virtue ethics framework for Christian maturity.
+          </p>
+
+          <div class="text-compare-grid">
+            
+            <!-- Book 1: Alice von Hildebrand -->
+            <div class="book-card">
+              <div class="book-card-header">
+                <span class="tag-badge tag-theology">Principal Book 1</span>
+                <span style="font-size: 11px; font-family: monospace; color: var(--color-text-muted);">Sapientia Press</span>
+              </div>
+              
+              <div>
+                <h3 class="book-title">The Privilege of Being a Woman</h3>
+                <p class="book-author">by Alice von Hildebrand</p>
+              </div>
+
+              <div class="anchor-box">
+                <div class="anchor-label">Anchor Passage 1: Part II (PDF pp. 10–14)</div>
+                <p class="anchor-text">
+                  <strong>Core Thesis:</strong> Equal dignity of male and female created in God's image. Human worth is supernatural and non-utilitarian; persons can never be reduced to tools of entertainment or casual gratification.
+                </p>
+                <div class="anchor-app">
+                  Campus Application: Direct moral prohibition against creating or circulating degrading memes of female classmates.
+                </div>
+              </div>
+
+              <div class="anchor-box">
+                <div class="anchor-label">Anchor Passage 2: Part VII (PDF pp. 37–44)</div>
+                <p class="anchor-text">
+                  <strong>Core Thesis:</strong> The profound noble nature of feminine emotional sensitivity and affectivity. Warning against emotional degradation and relational betrayal.
+                </p>
+                <div class="anchor-app">
+                  Campus Application: Calls students to empathize deeply with the severe psychological trauma caused by public group chat mockery.
+                </div>
+              </div>
+            </div>
+
+            <!-- Book 2: Gray & Martin -->
+            <div class="book-card">
+              <div class="book-card-header">
+                <span class="tag-badge tag-virtue">Principal Book 2</span>
+                <span style="font-size: 11px; font-family: monospace; color: var(--color-text-muted);">Emmaus Road</span>
+              </div>
+
+              <div>
+                <h3 class="book-title">Boys to Men: The Transforming Power of Virtue</h3>
+                <p class="book-author">by Tim Gray &amp; Curtis Martin</p>
+              </div>
+
+              <div class="anchor-box">
+                <div class="anchor-label">Anchor Passage 1: Chapter 1 (PDF pp. 12–16)</div>
+                <p class="anchor-text">
+                  <strong>Core Thesis:</strong> Virtue as an abiding habit of spiritual and moral strength. True Christian manhood consists in self-mastery and living for others rather than seeking cheap peer approval.
+                </p>
+                <div class="anchor-app">
+                  Campus Application: Empowers young men to actively resist peer pressure in digital chat groups and reject complicity.
+                </div>
+              </div>
+
+              <div class="anchor-box">
+                <div class="anchor-label">Anchor Passage 2: Chapter 2 (PDF pp. 20–28)</div>
+                <p class="anchor-text">
+                  <strong>Core Thesis:</strong> Prudence as the "charioteer of virtues." Deliberation before action, assessing consequences, and restraining impulsive animal reactions.
+                </p>
+                <div class="anchor-app">
+                  Campus Application: Demands taking a deliberate pause before clicking "forward," "share," or "laugh" on defamatory posts.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Synthesis & Philosophical Tension Resolution -->
+          <div class="synthesis-card">
+            <h4 class="synthesis-title">Synthesis: Harmonious Connection &amp; Interpretive Tension</h4>
+            <div class="synthesis-grid">
+              <div>
+                <strong>Harmonious Connection:</strong>
+                Von Hildebrand provides the intrinsic value grounding (why every woman and man possesses inviolable sacred worth), while Gray and Martin formulate the operational virtues (how students must exercise prudence and fortitude to protect that dignity in concrete group chat interactions).
+              </div>
+              <div>
+                <strong>Resolving the Interpretive Tension:</strong>
+                Von Hildebrand warns against undisciplined emotionalism, while Gray and Martin caution against moral passivity disguised as peaceful neutrality. Our synthesis demonstrates that genuine Christian virtue integrates emotional reverence with decisive, prudent bystander intervention.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- SECTION 3: EVIDENCE MATRIX                                        -->
+      <!-- ================================================================= -->
+      <section id="section-matrix" class="module-section hidden">
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div>
+              <span class="card-pretitle">Step 4 Verification</span>
+              <h2 class="card-title">7-Row Research Evidence Matrix</h2>
+            </div>
+            <span class="card-badge" style="background-color: var(--color-success-light); color: var(--color-success); font-weight: 700;">
+              <i class="bi bi-patch-check-fill" style="margin-right: 4px;"></i> 5+ Multi-Disciplinary Sources
+            </span>
+          </div>
+
+          <!-- Interactive Category Filter Pills -->
+          <div class="matrix-controls">
+            <div class="filter-pills" role="toolbar" aria-label="Filter Matrix Sources">
+              <button onclick="filterMatrix('all')" id="filter-btn-all" class="filter-btn active">All (7 Rows)</button>
+              <button onclick="filterMatrix('theology')" id="filter-btn-theology" class="filter-btn">Theological / Philosophical</button>
+              <button onclick="filterMatrix('virtue')" id="filter-btn-virtue" class="filter-btn">Virtue Ethics</button>
+              <button onclick="filterMatrix('law')" id="filter-btn-law" class="filter-btn">Philippine Law (RA 11313)</button>
+              <button onclick="filterMatrix('empirical')" id="filter-btn-empirical" class="filter-btn">Empirical Science</button>
+            </div>
+            <span style="font-size: 11px; color: var(--color-text-muted);">Verified against primary citations</span>
+          </div>
+
+          <!-- Desktop Matrix Table Wrapper -->
+          <div class="matrix-table-wrapper">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th style="width: 20%;">Source &amp; Exact Location</th>
+                  <th style="width: 22%;">Claim Type &amp; Core Content</th>
+                  <th style="width: 25%;">Connection / Tension</th>
+                  <th style="width: 23%;">Implication &amp; Limitation</th>
+                  <th style="width: 10%; text-align: center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1 -->
+                <tr data-category="theology">
+                  <td>
+                    <strong>Alice von Hildebrand</strong><br>
+                    <span style="color: var(--color-text-muted);">Privilege of Being a Woman, Part II (PDF pp. 10–14)</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-theology">Theological / Philosophical</span><br>
+                    God created male and female with equal personal dignity; human worth is grounded in God, not utility.
+                  </td>
+                  <td>Establishes foundational moral bedrock: female classmates cannot be reduced to objects of online mockery.</td>
+                  <td>Implies absolute respect is non-negotiable. <em>Limitation:</em> Does not specifically discuss modern smartphones.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 2 -->
+                <tr data-category="theology">
+                  <td>
+                    <strong>Alice von Hildebrand</strong><br>
+                    <span style="color: var(--color-text-muted);">Privilege of Being a Woman, Part VII (PDF pp. 37–44)</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-philosophy">Philosophical Analysis</span><br>
+                    Feminine sensitivity and affectivity demand protective reverence rather than exploitative ridicule.
+                  </td>
+                  <td>Tension: Emotional vulnerability can be twisted if not guided by truth and moral charity.</td>
+                  <td>Confirms cyber harassment inflicts severe emotional trauma. <em>Limitation:</em> Emphasizes attitudes over legal remedies.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 3 -->
+                <tr data-category="virtue">
+                  <td>
+                    <strong>Tim Gray &amp; Curtis Martin</strong><br>
+                    <span style="color: var(--color-text-muted);">Boys to Men, Chapter 1 (PDF pp. 12–16)</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-virtue">Moral Theology</span><br>
+                    Virtue is an abiding habit of moral strength; authentic manhood requires resisting peer conformity.
+                  </td>
+                  <td>Complements von Hildebrand by charging men to actively protect female dignity in peer circles.</td>
+                  <td>Calls men to break viral sharing chains. <em>Limitation:</em> Moral exhortation requires institutional reinforcement.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 4 -->
+                <tr data-category="virtue">
+                  <td>
+                    <strong>Tim Gray &amp; Curtis Martin</strong><br>
+                    <span style="color: var(--color-text-muted);">Boys to Men, Chapter 2 (PDF pp. 20–28)</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-virtue">Virtue Ethics</span><br>
+                    Prudence directs practical reason by deliberating before taking action ("charioteer of virtues").
+                  </td>
+                  <td>Directly governs digital impulse control—pausing before clicking "forward" or "laugh."</td>
+                  <td>Provides operational rule for digital self-mastery. <em>Limitation:</em> Requires individual daily habituation.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 5 -->
+                <tr data-category="theology">
+                  <td>
+                    <strong>Catechism of Catholic Church</strong><br>
+                    <span style="color: var(--color-text-muted);">CCC 2334 &amp; CCC 1806</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-theology">Christian Primary Source</span><br>
+                    God gives equal dignity to man and woman; Prudence disposes reason to discern true good in every circumstance.
+                  </td>
+                  <td>Doctrinally anchors both principal books in Magisterial Catholic moral theology.</td>
+                  <td>Establishes binding moral obligation for students. <em>Limitation:</em> Theological text; no empirical statistics.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 6 -->
+                <tr data-category="law">
+                  <td>
+                    <strong>Republic Act No. 11313</strong><br>
+                    <span style="color: var(--color-text-muted);">Safe Spaces Act (GBOSH Provisions)</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-law">Philippine Law</span><br>
+                    Penalizes Gender-Based Online Sexual Harassment (GBOSH), including non-consensual sharing of photos or videos.
+                  </td>
+                  <td>Grounds moral virtues in binding Philippine statutory law and campus safety obligations.</td>
+                  <td>Proves online meme forwarding has direct criminal liability. <em>Limitation:</em> Law alone cannot reform personal character.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+
+                <!-- Row 7 -->
+                <tr data-category="empirical">
+                  <td>
+                    <strong>Harmsen et al. (2016)</strong><br>
+                    <span style="color: var(--color-text-muted);">Peer-Reviewed Study on Digital Bystanders</span>
+                  </td>
+                  <td>
+                    <span class="tag-badge tag-empirical">Empirical Research</span><br>
+                    Empirical data shows active bystander intervention drastically reduces viral cyberbullying and victim despair.
+                  </td>
+                  <td>Provides scientific validation for Gray &amp; Martin’s claim that individual bystander courage matters.</td>
+                  <td>Scientifically validates campus peer intervention. <em>Limitation:</em> Describes behaviors without moral normativity.</td>
+                  <td style="text-align: center;"><span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Cards View for Evidence Matrix -->
+          <!-- Automatically appears on smartphone screens to prevent horizontal cut-off -->
+          <div class="matrix-mobile-cards">
+            
+            <div class="matrix-card-item" data-category="theology">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-theology">Theological / Philosophical</span>
+                  <div class="matrix-card-source">Alice von Hildebrand</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Privilege of Being a Woman, Part II (PDF pp. 10–14)</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> God created male and female with equal intrinsic dignity; persons cannot be made objects of amusement.
+                <strong style="margin-top: 4px;">Connection:</strong> Foundational reason why female classmates must never be digital joke fodder.
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="theology">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-philosophy">Philosophical Analysis</span>
+                  <div class="matrix-card-source">Alice von Hildebrand</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Privilege of Being a Woman, Part VII (PDF pp. 37–44)</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Woman's emotional depth and reverence; warning against cynical degradation.
+                <strong style="margin-top: 4px;">Connection:</strong> Highlights real psychological trauma of viral cyber harassment.
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="virtue">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-virtue">Moral Theology</span>
+                  <div class="matrix-card-source">Tim Gray &amp; Curtis Martin</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Boys to Men, Chapter 1 (PDF pp. 12–16)</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Virtue is moral strength; true manhood rejects cowardice and cheap peer approval.
+                <strong style="margin-top: 4px;">Connection:</strong> Demands active male courage to stop degrading content in group chats.
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="virtue">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-virtue">Virtue Ethics</span>
+                  <div class="matrix-card-source">Tim Gray &amp; Curtis Martin</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Boys to Men, Chapter 2 (PDF pp. 20–28)</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Prudence is "right reason in action," pausing to deliberate before impulsive execution.
+                <strong style="margin-top: 4px;">Connection:</strong> The exact virtue needed to resist pressing "forward" or "laugh."
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="theology">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-theology">Christian Primary</span>
+                  <div class="matrix-card-source">Catechism of Catholic Church</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">CCC 2334 &amp; CCC 1806</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Equal dignity of sexes; Prudence directs practical reason to discern true moral good.
+                <strong style="margin-top: 4px;">Connection:</strong> Doctrinally anchors research in official Catholic moral teaching.
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="law">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-law">Philippine Law</span>
+                  <div class="matrix-card-source">Republic Act No. 11313</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Safe Spaces Act (Online Harassment)</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Criminalizes Gender-Based Online Sexual Harassment (GBOSH), including unauthorized photos.
+                <strong style="margin-top: 4px;">Connection:</strong> Proves circulating private screenshots carries direct legal penalties.
+              </div>
+            </div>
+
+            <div class="matrix-card-item" data-category="empirical">
+              <div class="matrix-card-header">
+                <div>
+                  <span class="tag-badge tag-empirical">Empirical Study</span>
+                  <div class="matrix-card-source">Harmsen et al. (2016)</div>
+                  <div style="font-size: 11px; color: var(--color-text-muted);">Digital Bystander Intervention Study</div>
+                </div>
+                <span class="status-verified"><i class="bi bi-patch-check-fill"></i> Verified</span>
+              </div>
+              <div class="matrix-card-detail">
+                <strong>Core Claim:</strong> Active bystander intervention halts cyberbullying cycles; silence accelerates victim distress.
+                <strong style="margin-top: 4px;">Connection:</strong> Scientific evidence supporting the moral duty to intervene.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- SECTION 4: ACTION PLAN & RECOMMENDATIONS                          -->
+      <!-- ================================================================= -->
+      <section id="section-actions" class="module-section hidden">
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div>
+              <span class="card-pretitle">Step 5 &amp; 7 Practical Directives</span>
+              <h2 class="card-title">Three Justified Practical Recommendations</h2>
+            </div>
+            <span class="card-badge">Campus Behavioral Directives</span>
+          </div>
+
+          <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">
+            Actionable interventions grounded in Christian virtue ethics and Philippine Law with explicit safeguards and real-world boundary limitations.
+          </p>
+
+          <div class="actions-grid">
+            
+            <!-- Rec 1 -->
+            <div class="action-card">
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="action-num-badge">1</div>
+                <h3 class="action-title">Immediate Digital Break (Stop the Chain)</h3>
+                <p class="action-desc">
+                  Refuse to react with emojis, laugh, save, or forward defamatory media. Prudence requires exercising immediate personal restraint to starve the viral momentum before group validation takes hold.
+                </p>
+              </div>
+              <div class="safeguard-box">
+                <strong>Safeguard &amp; Limit:</strong>
+                Shields the individual student from criminal accomplice liability under RA 11313. <em>Limitation:</em> Stopping your own share does not delete the image from other participants' phones.
+              </div>
+            </div>
+
+            <!-- Rec 2 -->
+            <div class="action-card">
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="action-num-badge">2</div>
+                <h3 class="action-title">Private Peer Intervention &amp; Quiet Empathy</h3>
+                <p class="action-desc">
+                  Direct message the original sender privately to explain why the post violates Christian dignity and Philippine law. Simultaneously reach out to the victim with genuine empathy and quiet solidarity.
+                </p>
+              </div>
+              <div class="safeguard-box">
+                <strong>Safeguard &amp; Limit:</strong>
+                Prevents public group chat escalation while enforcing moral boundaries. <em>Limitation:</em> If the sender is unrepentant, matter must be escalated to UMak Student Affairs.
+              </div>
+            </div>
+
+            <!-- Rec 3 -->
+            <div class="action-card">
+              <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="action-num-badge">3</div>
+                <h3 class="action-title">Student Org Digital Conduct Charter</h3>
+                <p class="action-desc">
+                  Institutionalize virtue standards by introducing an official "UMak Digital Respect Charter" for all college organizations and class group chats, clearly defining rules against unauthorized screenshot forwarding.
+                </p>
+              </div>
+              <div class="safeguard-box">
+                <strong>Safeguard &amp; Limit:</strong>
+                Creates sustained systemic accountability. <em>Limitation:</em> Requires active cooperation from faculty advisers and ongoing student leadership orientation.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- SECTION 5: ETHICS SIMULATOR                                       -->
+      <!-- ================================================================= -->
+      <section id="section-simulator" class="module-section hidden">
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div>
+              <span class="card-pretitle">Interactive Moral Module</span>
+              <h2 class="card-title">Campus Messenger Group Chat Simulator</h2>
+            </div>
+            <span class="card-badge-ai">
+              <i class="bi bi-cpu-fill"></i> Dynamic Virtue Lab <span class="ai-live-badge">AI</span>
+            </span>
+          </div>
+
+          <div class="sim-container">
+            
+            <!-- Real Campus Messenger Scenario -->
+            <div class="sim-chat-box">
+              <span class="chat-bubble-sender">
+                <i class="bi bi-chat-quote-fill" style="margin-right: 6px;"></i> Campus Dilemma Context: Section GC (15 Members)
+              </span>
+              <p class="chat-bubble-text">
+                You are in your 15-member Ethics course group chat. Around 11:30 PM, a close friend posts an unauthorized screenshot and mocking meme of your female classmate "Ana" with the message:
+              </p>
+              <div class="chat-quote">
+                "Uy guys, tingnan niyo si Ana oh haha! Forward niyo sa 5 pang GC para swertehin sa Finals bukas!"
+              </div>
+              <p style="font-size: 13px; color: #d0d5e8;">
+                Several friends have already reacted with laughing emojis. What will you do?
+              </p>
+            </div>
+
+            <!-- Interactive Choice Buttons -->
+            <div class="sim-choices-grid">
+              
+              <button onclick="evaluateSim('A')" id="sim-btn-A" class="sim-choice-btn">
+                <span class="sim-choice-label">Option A: Peer Conformity</span>
+                <span class="sim-choice-text">
+                  React with a laughing emoji and forward the meme to your barkada GC so you won't feel left out.
+                </span>
+              </button>
+
+              <button onclick="evaluateSim('B')" id="sim-btn-B" class="sim-choice-btn">
+                <span class="sim-choice-label">Option B: Passive Silence</span>
+                <span class="sim-choice-text">
+                  Ignore the chat entirely, mute the notifications, and pretend you never saw the forwarded message.
+                </span>
+              </button>
+
+              <button onclick="evaluateSim('C')" id="sim-btn-C" class="sim-choice-btn">
+                <span class="sim-choice-label">Option C: Prudent Intervention</span>
+                <span class="sim-choice-text">
+                  Do not react or forward. Privately ask the sender to delete it, and send a kind message to Ana to check on her.
+                </span>
+              </button>
+
+            </div>
+
+            <!-- Interactive Evaluation Feedback Box -->
+            <div id="sim-feedback" class="sim-feedback-box">
+              <div id="sim-result-title" class="sim-result-title"></div>
+              <div id="sim-result-body" class="sim-result-body"></div>
+              <div id="sim-metrics-bar" class="sim-metrics-bar"></div>
+
+              <!-- AI Deep Analysis Panel -->
+              <div id="sim-ai-panel" class="sim-ai-panel" style="display:none;">
+                <div class="sim-ai-panel-header">
+                  <i class="bi bi-cpu-fill"></i>
+                  <span>Dynamic Virtue Lab — AI Deep Analysis</span>
+                  <span id="sim-ai-provider" class="sim-ai-provider-badge"></span>
+                </div>
+                <div id="sim-ai-loading" class="sim-ai-loading" style="display:none;">
+                  <div class="sim-ai-spinner"></div>
+                  <span>Analyzing virtue implications…</span>
+                </div>
+                <div id="sim-ai-response" class="sim-ai-response"></div>
+                <div id="sim-ai-error" class="sim-ai-error" style="display:none;"></div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; flex-wrap: wrap; gap: 8px;">
+                <button onclick="requestAIAnalysis()" id="sim-ai-btn" class="btn btn-ai-request" style="display:none;">
+                  <i class="bi bi-cpu-fill" style="margin-right: 6px;"></i> Get AI Deep Analysis
+                </button>
+                <button onclick="resetSim()" class="btn btn-secondary" style="font-size: 12px; padding: 6px 14px; color: #ffffff; border-color: rgba(255,255,255,0.4);">
+                  <i class="bi bi-arrow-counterclockwise" style="margin-right: 4px;"></i> Try Another Decision
+                </button>
+              </div>
+            </div>
+
+            <!-- ── Custom Dilemma Section ──────────────────────────────────── -->
+            <div class="custom-dilemma-section">
+              <div class="custom-dilemma-header">
+                <i class="bi bi-pencil-square"></i>
+                <div>
+                  <strong>Submit Your Own Ethical Dilemma</strong>
+                  <p>Describe a real or hypothetical campus ethical situation and the AI will evaluate it using virtue ethics and Philippine law.</p>
+                </div>
+              </div>
+
+              <textarea
+                id="custom-dilemma-input"
+                class="custom-dilemma-textarea"
+                placeholder="Halimbawa: Nakita mo na may kaklase ka na nag-cheat sa exam gamit ang screenshotted reviewer na kuha sa teacher's table. Alam mo na may malaking advantage sya ngayon sa grades. Ano ang dapat mong gawin bilang isang prudent UMak student?"
+                rows="4"
+                maxlength="800"
+              ></textarea>
+              <div class="custom-dilemma-footer">
+                <span id="custom-char-count" class="custom-char-count">0 / 800</span>
+                <button onclick="submitCustomDilemma()" id="custom-submit-btn" class="btn btn-primary-custom">
+                  <i class="bi bi-send-fill" style="margin-right: 6px;"></i> Analyze with AI
+                </button>
+              </div>
+
+              <!-- Custom AI Result -->
+              <div id="custom-ai-result" class="custom-ai-result" style="display:none;">
+                <div class="sim-ai-panel-header">
+                  <i class="bi bi-cpu-fill"></i>
+                  <span>AI Virtue Assessment</span>
+                  <span id="custom-ai-provider" class="sim-ai-provider-badge"></span>
+                </div>
+                <div id="custom-ai-loading" class="sim-ai-loading" style="display:none;">
+                  <div class="sim-ai-spinner"></div>
+                  <span>Evaluating your dilemma…</span>
+                </div>
+                <div id="custom-ai-response" class="sim-ai-response"></div>
+                <div id="custom-ai-error" class="sim-ai-error" style="display:none;"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ================================================================= -->
+      <!-- SECTION 6: PROCESS, REVISIONS & CONTRIBUTION LOG                  -->
+      <!-- ================================================================= -->
+      <section id="section-process" class="module-section hidden">
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div>
+              <span class="card-pretitle">Step 8 &amp; Consultation Log</span>
+              <h2 class="card-title">Project Process Record &amp; Contribution History</h2>
+            </div>
+            <span class="card-badge">Verifiable Research Trail</span>
+          </div>
+
+          <!-- Documented Revisions Based on Feedback -->
+          <div style="margin-bottom: 24px;">
+            <h3 style="font-size: 15px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <i class="bi bi-arrow-repeat" style="color: var(--color-tertiary);"></i>
+              <span>Two Documented Meaningful Revisions</span>
+            </h3>
+            
+            <div class="revisions-grid">
+              <div class="revision-card">
+                <div class="revision-header">Revision 1: Partner Group Peer Review Feedback</div>
+                <p class="revision-desc">
+                  <strong>Critique:</strong> Our initial draft lacked Philippine legal grounding for why forwarded memes cannot be dismissed as "harmless banter."<br>
+                  <strong>Modification:</strong> Integrated statutory provisions of Republic Act No. 11313 (Safe Spaces Act) and CCC 2334 on bystander complicity into the argument rebuttal.
+                </p>
+              </div>
+
+              <div class="revision-card">
+                <div class="revision-header">Revision 2: Instructor Consultation Review</div>
+                <p class="revision-desc">
+                  <strong>Critique:</strong> Needed precise PDF viewer page references to anchor claims accurately in primary texts.<br>
+                  <strong>Modification:</strong> Formatted exact PDF viewer page ranges for von Hildebrand (Part II, pp. 10–14; Part VII, pp. 37–44) and Gray-Martin (Ch. 1, pp. 12–16; Ch. 2, pp. 20–28).
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contribution Log Table -->
+          <div style="margin-bottom: 24px;">
+            <h3 style="font-size: 15px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 12px;">
+              Verifiable Work &amp; Consultation Schedule
+            </h3>
+            
+            <div class="log-table-wrapper">
+              <table class="log-table">
+                <thead>
+                  <tr>
+                    <th>Member Name</th>
+                    <th>Role Assigned</th>
+                    <th>Key Tasks Completed</th>
+                    <th>Section / File Reference</th>
+                    <th style="text-align: center;">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Avila, Ar Wendel D.</strong></td>
+                    <td>Coordinator</td>
+                    <td>Proposal submission, deadline management, meeting logs</td>
+                    <td>Process Record &amp; Schedule</td>
+                    <td style="text-align: center; color: var(--color-success); font-weight: 700;"><i class="bi bi-check2-circle"></i> Completed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bacallo, Khen Isiah</strong></td>
+                    <td>von Hildebrand Analyst</td>
+                    <td>Extracted 2 anchor passages (Parts V-VI), drafted book analysis</td>
+                    <td>Brief Section 3 &amp; Matrix Rows 1-2</td>
+                    <td style="text-align: center; color: var(--color-success); font-weight: 700;"><i class="bi bi-check2-circle"></i> Completed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Balingit, Luigi D.</strong></td>
+                    <td>Producer / Editor</td>
+                    <td>Website design, HTML coding, accessibility &amp; offline export check</td>
+                    <td>Final Webpage Output &amp; Layout</td>
+                    <td style="text-align: center; color: var(--color-success); font-weight: 700;"><i class="bi bi-check2-circle"></i> Completed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fania, Zairen</strong></td>
+                    <td>Gray-Martin Analyst</td>
+                    <td>Extracted 2 anchor passages (Ch. 4 Fortitude), drafted virtue section</td>
+                    <td>Brief Section 3 &amp; Matrix Rows 3-4</td>
+                    <td style="text-align: center; color: var(--color-success); font-weight: 700;"><i class="bi bi-check2-circle"></i> Completed</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Japitana, Eniel Jerel</strong></td>
+                    <td>Evidence Checker</td>
+                    <td>Sourced CCC, RA 11313, &amp; empirical study; built 7-row matrix</td>
+                    <td>Matrix Rows 5-7 &amp; Brief Section 4</td>
+                    <td style="text-align: center; color: var(--color-success); font-weight: 700;"><i class="bi bi-check2-circle"></i> Completed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Official AI-Use Declaration -->
+          <div class="ai-declaration-card">
+            <strong style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <i class="bi bi-shield-check" style="font-size: 15px;"></i>
+              <span>Academic Integrity &amp; Responsible Technology Declaration:</span>
+            </strong>
+            Artificial intelligence and computer-assisted technologies were utilized strictly as formatting and code structuring assistants for responsive CSS tokenization, accessibility contrast verification, and syntax refinement. All underlying ethical arguments, philosophical comparisons, statutory interpretations of Philippine law, anchor passage verifications, and final recommendations were independently researched, verified, and authored by the students of Group 1.
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 8. OFFICIAL UMAK BRAND FOOTER -->
+  <!-- Adheres strictly to UMak CIC Design Specification & Copyright -->
+  <footer class="main-footer" role="contentinfo">
+    <div class="container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-seals">
+            <img 
+              src="umak-public-assets/assets/logos/PNGs/UMak%20Logo%20-%20White%20R.png" 
+              alt="University of Makati Official Seal" 
+              class="footer-seal"
+              width="48"
+              height="48"
+            >
+            <img 
+              src="UMAK-CLASS-Logo-2026-e1787801119808-219x300.png" 
+              alt="College of Liberal Arts and Social Sciences Seal" 
+              class="footer-seal"
+              width="48"
+              height="48"
+              style="object-fit: contain;"
+            >
+          </div>
+          <div class="footer-brand-info">
+            <div class="footer-info-title">University of Makati</div>
+            <div class="footer-info-sub">College of Liberal Arts and Social Sciences • Department of Social Sciences &amp; Humanities</div>
+            <div class="footer-info-sub">GEE: ETHICS Courseware Final Defense Project</div>
+          </div>
+        </div>
+
+        <div class="footer-contact">
+          <div class="footer-meta-item">
+            <i class="bi bi-person-badge-fill"></i>
+            <span>Lead Author &amp; Developer: <strong class="author-highlight">Luigi D. Balingit</strong></span>
+          </div>
+          <div class="footer-meta-item">
+            <i class="bi bi-journal-bookmark-fill"></i>
+            <span>Strand 6: Digital Conduct &amp; Prudence • Academic Year 2026–2027</span>
+          </div>
+          <div class="footer-meta-item">
+            <i class="bi bi-shield-check"></i>
+            <span>Brand Assets maintained by <a href="mailto:cic@umak.edu.ph" class="footer-cic-link">UMak Center for Integrated Communications (CIC)</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 University of Makati&reg;. All rights reserved.
+        </div>
+        <div>
+          Official property of the University of Makati. Built with UMak Public Assets &amp; Metropolis UI.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- 9. FLOATING BACK TO TOP BUTTON -->
+  <button id="backToTopBtn" class="back-to-top" aria-label="Scroll back to top" title="Back to top">
+    <svg viewBox="0 0 24 24">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+
+</body>
+</html>

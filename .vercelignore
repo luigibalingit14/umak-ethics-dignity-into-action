@@ -1,0 +1,5 @@
+.env
+.env.local
+.env.*.local
+*.backup.html
+College of Liberal Arts*

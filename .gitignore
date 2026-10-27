@@ -1,0 +1,14 @@
+# Environment variables & API keys
+.env
+.env.local
+.env.*.local
+
+# Vercel & Node
+.vercel
+node_modules
+npm-debug.log
+
+# Backup & Scrap reference files
+*.backup.html
+College of Liberal Arts*
+
