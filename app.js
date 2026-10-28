@@ -1,10 +1,11 @@
 /**
- * UMak Ethics Project Application Logic — "Dignity into Action"
+ * UMak Ethics Project Application Logic — "Dignity, Courage, into Action"
  * Group 1 Lead: Luigi D. Balingit
+ * Research Strand: Strand 3 (Cyberbullying and Peer Pressure)
  * Features:
  * - Active tab switching across desktop nav, mobile drawer, and bottom quick dock
  * - Dark / Light theme toggle with local persistence and system pref sync
- * - Interactive Ethics Simulator with virtue impact scoring
+ * - Interactive Ethics Simulator with virtue impact scoring (Humility, Receptivity, Agency, Fortitude)
  * - Evidence Matrix interactive filter pills
  * - Mobile responsive drawer & floating back-to-top handler
  */
@@ -198,28 +199,31 @@
     }
 
     if (choice === 'A') {
-      titleEl.innerHTML = '<i class="bi bi-x-circle-fill" style="color: var(--color-error); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ff8a80;">Severe Moral Compromise: Active Complicity</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> Forwarding degrading media or validating it with laughter violates the inherent, sacred dignity of your classmate (von Hildebrand, <em>The Privilege of Being a Woman</em>, Part II). Furthermore, under Philippine Republic Act No. 11313 (Safe Spaces Act), circulating unauthorized private media and defamatory content constitutes illegal Gender-Based Online Sexual Harassment (GBOSH). Gray and Martin stress in <em>Boys to Men</em> that compromising virtue to seek cheap group popularity destroys character.';
+      titleEl.innerHTML = '<i class="bi bi-x-circle-fill" style="color: var(--color-error); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ff8a80;">Severe Moral Compromise: Peer Conformity &amp; Complicity</span>';
+      bodyEl.innerHTML = '<strong>Analysis:</strong> Forwarding Leo\'s crying photo and reacting with laughter violates <strong>Humility</strong> (Alice von Hildebrand, <em>The Privilege of Being a Woman</em>) by reducing a classmate\'s sacred dignity to an instrument for cheap entertainment and group validation. Surrendering your <strong>Agency</strong> (Gray &amp; Martin, <em>Boys to Men</em>) to herd conformity is no excuse: you are accountable for every click and share. Furthermore, under Philippine <strong>Republic Act No. 11313 (Safe Spaces Act)</strong>, spreading defamatory, unauthorized private photos online carries direct criminal liability, and colluding or forwarding makes you a legal accomplice.';
       scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-dash-circle-fill" style="margin-right: 4px;"></i> Prudence: 0/10 (Impulsive)</span>
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-shield-x" style="margin-right: 4px;"></i> Courage: 0/10 (Peer Conformity)</span>
+        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-dash-circle-fill" style="margin-right: 4px;"></i> Agency: 0/10 (Herd Mentality)</span>
+        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-shield-x" style="margin-right: 4px;"></i> Courage: 0/10 (Moral Cowardice)</span>
+        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-heartbreak-fill" style="margin-right: 4px;"></i> Humility: 0/10 (Clout over Dignity)</span>
         <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-exclamation-octagon-fill" style="margin-right: 4px;"></i> RA 11313: Criminal Violation</span>
       `;
     } else if (choice === 'B') {
-      titleEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill" style="color: var(--color-warning); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ffd54f;">Passive Bystander: Deficiency in Moral Courage</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> While you avoided actively forwarding the harmful content, passive silence allows the digital viral chain to proceed unchecked. In Catholic moral theology, omitting rightful action when dignity is threatened makes one a passive accomplice. Empirical research on campus bystander behavior (Harmsen et al., 2016) shows that cyber harassment thrives when the majority stays silent. Prudence is not cowardice; right reason demands proactive measures to protect the victim.';
+      titleEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill" style="color: var(--color-warning); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ffd54f;">Passive Bystander: Silent Complicity &amp; Moral Hesitation</span>';
+      bodyEl.innerHTML = '<strong>Analysis:</strong> While you avoided actively forwarding the harmful meme, passive silence in an exclusive GC is interpreted as implicit agreement. Failing to stop evil when you have the capacity to do so makes you a "co-agent" or accomplice to the harm. This choice lacks <strong>Courage / Fortitude</strong> (Gray &amp; Martin) out of fear of being labeled a "killjoy," and ignores <strong>Receptivity</strong> (von Hildebrand) by remaining numb to Leo\'s emotional trauma. Empirical research confirms cyberbullying accelerates when bystanders stay silent.';
       scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-exclamation-circle-fill" style="margin-right: 4px;"></i> Prudence: 4/10 (Incomplete)</span>
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-eye-slash-fill" style="margin-right: 4px;"></i> Courage: 2/10 (Silent Observer)</span>
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-arrow-repeat" style="margin-right: 4px;"></i> Campus Impact: Chain Continues</span>
+        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-eye-slash-fill" style="margin-right: 4px;"></i> Courage: 2/10 (Fear of Isolation)</span>
+        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-pause-circle-fill" style="margin-right: 4px;"></i> Agency: 3/10 (Passive Inaction)</span>
+        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-ear-fill" style="margin-right: 4px;"></i> Receptivity: 2/10 (Numb to Pain)</span>
+        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-arrow-repeat" style="margin-right: 4px;"></i> Campus Impact: Bullying Continues</span>
       `;
     } else if (choice === 'C') {
-      titleEl.innerHTML = '<i class="bi bi-check-circle-fill" style="color: var(--color-success); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #a7f3d0;">Exemplary Moral Action: Prudence and Sacred Reverence</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> This choice embodies the pinnacle of virtue! You exercised <strong>Prudence</strong> ("right reason applied to practice", Gray &amp; Martin, Ch. 2) by halting the spread without creating volatile group hostility. By privately confronting the sender with legal and moral boundaries, and by reaching out to Ana with authentic empathy, you honored feminine sensitivity and dignity (von Hildebrand, Part VII) while creating a safe campus space.';
+      titleEl.innerHTML = '<i class="bi bi-check-circle-fill" style="color: var(--color-success); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #a7f3d0;">Exemplary Moral Action: Four Core Virtues in Action</span>';
+      bodyEl.innerHTML = '<strong>Analysis:</strong> This choice reflects authentic moral maturity! You exercised <strong>Agency</strong> (Gray &amp; Martin) by refusing to follow the herd and cutting the viral supply chain. You demonstrated <strong>Courage / Fortitude</strong> by publicly speaking up in the GC: <em>"Guys, this is too much. Let\'s delete this, we are destroying someone."</em> You lived out <strong>Receptivity</strong> (von Hildebrand) by privately assuring Leo that he has an ally and is not alone. Finally, you embodied <strong>Humility</strong> by recognizing that human dignity is sacred and never an instrument for peer entertainment.';
       scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-patch-check-fill" style="margin-right: 4px;"></i> Prudence: 10/10 (Charioteer of Virtues)</span>
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-shield-check" style="margin-right: 4px;"></i> Courage: 10/10 (Rightful Resistance)</span>
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-check2-all" style="margin-right: 4px;"></i> Safe Spaces: Fully Upheld</span>
+        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-shield-check" style="margin-right: 4px;"></i> Agency: 10/10 (Cut the Chain)</span>
+        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-megaphone-fill" style="margin-right: 4px;"></i> Courage: 10/10 (Public Stand)</span>
+        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-heart-fill" style="margin-right: 4px;"></i> Receptivity: 10/10 (Private Ally)</span>
+        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-patch-check-fill" style="margin-right: 4px;"></i> Humility: 10/10 (Honoring Dignity)</span>
       `;
     }
 
@@ -402,13 +406,21 @@
     var btn = document.getElementById('backToTopBtn');
     if (!btn) return;
 
+    // Use rAF throttle to avoid layout thrash on every scroll tick
+    var ticking = false;
     window.addEventListener('scroll', function () {
-      if (window.pageYOffset > 300) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          if (window.pageYOffset > 300) {
+            btn.classList.add('visible');
+          } else {
+            btn.classList.remove('visible');
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
 
     btn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });

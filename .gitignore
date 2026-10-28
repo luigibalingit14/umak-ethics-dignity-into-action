@@ -17,7 +17,11 @@ bootstrap-icons/
 College of Liberal Arts*
 
 # Sensitive credentials & recovery codes
+# Sensitive credentials & recovery codes
 *recovery*
 *.txt
+
+# Video recordings
+*.mp4
 
 

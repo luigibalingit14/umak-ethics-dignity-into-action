@@ -73,21 +73,21 @@ export default async function handler(req, res) {
 
   // ── Build the prompt ───────────────────────────────────────────────────────
   // Kept concise to minimize input token usage and save credits.
-  let systemPrompt = `You are a Catholic moral theologian and Philippine legal scholar. Analyze ethical dilemmas using virtue ethics (von Hildebrand "The Privilege of Being a Woman"; Gray & Martin "Boys to Men") and Philippine law (Safe Spaces Act RA 11313, CCC 2334). Respond in 2-3 short paragraphs, under 160 words. Be warm but rigorous. Cite specific texts and laws. UMak GEE Ethics finals project — Group 1.`;
+  let systemPrompt = `You are a Catholic moral theologian and Philippine legal scholar for the University of Makati (UMak) GEE: Ethics final defense project (Group 1 - Strand 3: Cyberbullying and Peer Pressure). Analyze ethical dilemmas using the four core virtues: Humility and Receptivity (Alice von Hildebrand, "The Privilege of Being a Woman"), Agency and Courage/Fortitude (Tim Gray & Curtis Martin, "Boys to Men"), Catechism of the Catholic Church (CCC 2477-2479), and Republic Act No. 11313 (Safe Spaces Act - GBOSH, cyber harassment, accomplice liability). Respond in 2-3 short, clear paragraphs, under 170 words. Be warm, principled, and rigorous.`;
 
   let userPrompt = '';
 
   if (mode === 'choice') {
     // Evaluate a pre-set simulator choice (A, B, or C)
     const choiceDescriptions = {
-      A: 'Option A: React with a laughing emoji and forward the meme to your barkada GC to avoid being left out.',
-      B: 'Option B: Ignore the chat, mute notifications, and pretend you never saw the message.',
-      C: 'Option C: Do not react or forward. Privately ask the sender to delete it, and send a kind message to the victim.'
+      A: 'Option A: React with laughing emojis and forward the meme of Leo crying to the other section to avoid being called a "killjoy" and fit in with the group.',
+      B: 'Option B: Stay quietly passive, mute notifications, and pretend you never saw the message to avoid drama and avoid becoming the next target.',
+      C: 'Option C: Refuse to react or forward (Agency). Call out the GC: "Guys, this is too much. Let\'s delete this, we are destroying someone" (Fortitude), and privately message Leo to reassure him he has an ally (Receptivity).'
     };
 
-    const scenario = `Campus Dilemma: You are in a 15-member Ethics course group chat. Around 11:30 PM, a close friend posts an unauthorized screenshot and mocking meme of your female classmate "Ana" with the message: "Uy guys, tingnan niyo si Ana oh haha! Forward niyo sa 5 pang GC para swertehin sa Finals bukas!" Several friends have already reacted with laughing emojis.`;
+    const scenario = `Campus Dilemma: Javier is in a 15-member friend group chat. One night around 11:30 PM, the group leader posts an embarrassing photo of classmate Leo (secretly taken while crying over a failing grade), accompanied by an insulting meme: "Uy guys, tingnan niyo si Leo umiiyak haha! I-forward niyo sa kabilang section para kumalat at maging viral!" Everyone has reacted with laughing emojis. The leader pressures Javier to share it. If Javier does not cooperate, he will be called a "killjoy" and could be the group's next target.`;
 
-    userPrompt = `${scenario}\n\nThe student chose: ${choiceDescriptions[choice] || 'Unknown option'}\n\nAnalyze this choice using virtue ethics. Reference von Hildebrand, Gray & Martin, and RA 11313. What virtues were exercised or violated? What is the moral consequence?`;
+    userPrompt = `${scenario}\n\nThe student chose: ${choiceDescriptions[choice] || 'Unknown option'}\n\nAnalyze this choice using the four core virtues (Humility, Receptivity, Agency, Courage/Fortitude) and Philippine Law (RA 11313 Safe Spaces Act). What virtues were exercised or violated? What is the moral and legal consequence?`;
 
   } else if (mode === 'custom') {
     // ── Relevance guard: NO API call for off-topic inputs ──────────────────────
