@@ -71,6 +71,7 @@ export default async function handler(req, res) {
   }
 
   const { choice, customDilemma, mode } = req.body || {};
+  const validChoices = ['A', 'B', 'C'];
 
   // ── Build the prompt ───────────────────────────────────────────────────────
   // Kept concise to minimize input token usage and save credits.
@@ -79,6 +80,10 @@ export default async function handler(req, res) {
   let userPrompt = '';
 
   if (mode === 'choice') {
+    if (!validChoices.includes(choice)) {
+      return res.status(400).json({ error: 'Invalid choice. Use A, B, or C.' });
+    }
+
     // Evaluate a pre-set simulator choice (A, B, or C)
     const choiceDescriptions = {
       A: 'Option A: Stay quiet and accept the group decision to leave the teammate’s idea and contribution out without checking the source.',
@@ -92,11 +97,14 @@ export default async function handler(req, res) {
 
   } else if (mode === 'custom') {
     // ── Relevance guard: NO API call for off-topic inputs ──────────────────────
-    if (!customDilemma || customDilemma.trim().length < 20) {
-      return res.status(400).json({ error: 'Please provide a more detailed dilemma (at least 20 characters).' });
+    if (typeof customDilemma !== 'string') {
+      return res.status(400).json({ error: 'Please submit your dilemma as text.' });
     }
 
     const trimmed = customDilemma.trim();
+    if (trimmed.length < 20 || trimmed.length > 800) {
+      return res.status(400).json({ error: 'Please provide a dilemma between 20 and 800 characters.' });
+    }
 
     if (!isEthicsRelated(trimmed)) {
       return res.status(400).json({
