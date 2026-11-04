@@ -136,7 +136,7 @@ export default async function handler(req, res) {
         headers: {
           'Authorization': `Bearer ${currentORKey}`,
           'Content-Type': 'application/json',
-          'HTTP-Referer': 'https://umak-ethics-group1.vercel.app',
+          'HTTP-Referer': 'https://umak-ethics-dignity-into-action-g1.vercel.app',
           'X-Title': 'UMak Ethics - Dignity into Action'
         },
         body: JSON.stringify({
