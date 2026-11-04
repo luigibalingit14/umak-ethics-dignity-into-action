@@ -172,7 +172,6 @@
     var aiPanel = document.getElementById('sim-ai-panel');
     var aiResponse = document.getElementById('sim-ai-response');
     var aiError = document.getElementById('sim-ai-error');
-    var aiProvider = document.getElementById('sim-ai-provider');
 
     if (!feedbackBox || !titleEl || !bodyEl || !scoreBar) return;
 
@@ -180,7 +179,6 @@
     if (aiPanel) { aiPanel.style.display = 'none'; }
     if (aiResponse) { aiResponse.textContent = ''; }
     if (aiError) { aiError.style.display = 'none'; aiError.textContent = ''; }
-    if (aiProvider) { aiProvider.textContent = ''; }
 
     feedbackBox.classList.add('active');
 
@@ -268,7 +266,6 @@
     var aiLoading = document.getElementById('sim-ai-loading');
     var aiResponse = document.getElementById('sim-ai-response');
     var aiError = document.getElementById('sim-ai-error');
-    var aiProvider = document.getElementById('sim-ai-provider');
 
     if (!aiPanel) return;
 
@@ -278,7 +275,6 @@
     aiResponse.textContent = '';
     aiError.style.display = 'none';
     aiError.textContent = '';
-    aiProvider.textContent = '';
     if (aiBtn) { aiBtn.disabled = true; aiBtn.innerHTML = '<i class="bi bi-hourglass-split" style="margin-right:6px;"></i> Analyzing…'; }
 
     fetch('/api/virtue-eval', {
@@ -294,9 +290,6 @@
         aiError.textContent = '⚠ ' + data.error;
       } else {
         aiResponse.textContent = data.response || '';
-        if (data.provider) {
-          aiProvider.textContent = data.provider;
-        }
       }
     })
     .catch(function (err) {
@@ -322,7 +315,6 @@
     var loading = document.getElementById('custom-ai-loading');
     var response = document.getElementById('custom-ai-response');
     var error = document.getElementById('custom-ai-error');
-    var provider = document.getElementById('custom-ai-provider');
     var submitBtn = document.getElementById('custom-submit-btn');
 
     if (!input || !input.value.trim() || input.value.trim().length < 20) {
@@ -336,7 +328,6 @@
     response.textContent = '';
     error.style.display = 'none';
     error.textContent = '';
-    provider.textContent = '';
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="bi bi-hourglass-split" style="margin-right:6px;"></i> Analyzing…';
 
@@ -361,7 +352,6 @@
         }
       } else {
         response.textContent = data.response || '';
-        if (data.provider) { provider.textContent = data.provider; }
       }
     })
     .catch(function () {
