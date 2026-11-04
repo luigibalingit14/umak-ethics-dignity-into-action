@@ -16,7 +16,7 @@ try {
     process.loadEnvFile(path.join(__dirname, '.env'));
     console.log('✓ Loaded environment variables from .env');
   } else {
-    console.warn('ℹ No .env or .env.local found. Dynamic Virtue Lab AI will need API keys.');
+    console.warn('ℹ No .env or .env.local found. The AI reflection aid will need API keys.');
   }
 } catch (e) {
   console.warn('Notice loading env file:', e.message);
@@ -108,8 +108,8 @@ const server = http.createServer(async (req, res) => {
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`\n======================================================`);
-  console.log(`  UMak Ethics — Dignity into Action (Group 1)`);
-  console.log(`  Dynamic Virtue Lab Server running!`);
+  console.log(`  UMak Ethics — Dignity into Action (Group 3)`);
+  console.log(`  AI Reflection Aid server running!`);
   console.log(`  URL: http://localhost:${PORT}`);
   console.log(`======================================================\n`);
   const hasOR = !!(process.env.OPENROUTER_API_KEY && process.env.OPENROUTER_API_KEY !== 'your_openrouter_api_key_here');

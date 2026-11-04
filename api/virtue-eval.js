@@ -1,5 +1,5 @@
 /**
- * Vercel Serverless API — Dynamic Virtue Lab AI Evaluator
+ * Vercel Serverless API — AI reflection aid
  * File: /api/virtue-eval.js
  *
  * Logic:
@@ -27,6 +27,7 @@ const ETHICS_KEYWORDS = [
   // Philippine law / social norms
   'batas', 'law', 'legal', 'karapatan', 'right', 'rights', 'obligasyon', 'duty',
   'safe spaces', 'harassment', 'panliligalig', 'bullying', 'cyberbullying',
+  'peer pressure', 'pressure', 'group project', 'contribution', 'credit',
   'diskriminasyon', 'discrimination', 'privacy', 'pribilehiyo',
   // Dilemma / decision-making language
   'dilemma', 'dilema', 'pagpili', 'choice', 'decide', 'desisyon', 'decision',
@@ -73,21 +74,21 @@ export default async function handler(req, res) {
 
   // ── Build the prompt ───────────────────────────────────────────────────────
   // Kept concise to minimize input token usage and save credits.
-  let systemPrompt = `You are a Catholic moral theologian and Philippine legal scholar for the University of Makati (UMak) GEE: Ethics final defense project (Group 1 - Strand 3: Cyberbullying and Peer Pressure). Analyze ethical dilemmas using the four core virtues: Humility and Receptivity (Alice von Hildebrand, "The Privilege of Being a Woman"), Agency and Courage/Fortitude (Tim Gray & Curtis Martin, "Boys to Men"), Catechism of the Catholic Church (CCC 2477-2479), and Republic Act No. 11313 (Safe Spaces Act - GBOSH, cyber harassment, accomplice liability). Respond in 2-3 short, clear paragraphs, under 170 words. Be warm, principled, and rigorous.`;
+  let systemPrompt = `You are an AI discussion aid for a University of Makati GEE: Ethics Group 3 project asking how humility and receptivity can coexist with agency and courage when peers pressure a student to stay silent. Help analyze the described choice using these as interpretive lenses: von Hildebrand, The Privilege of Being a Woman, Parts V-VI; Gray & Martin, Boys to Men, Chapter 4 (fortitude); and, where useful, Catholic teaching on prudence and fortitude (Catechism §§1806, 1808). "Agency" is the project's working term, not a virtue directly established by the cited Chapter 4 passage. Do not claim these authors address the fictional case directly. Do not invent quotations, page numbers, evidence, policies, legal consequences, diagnoses, or outcomes; do not give legal advice. State uncertainty and distinguish source ideas from the project's application. Silence is not automatically complicity, and courage does not always require public confrontation. Offer proportionate options and mention limits. Respond in 2-3 short paragraphs under 170 words.`;
 
   let userPrompt = '';
 
   if (mode === 'choice') {
     // Evaluate a pre-set simulator choice (A, B, or C)
     const choiceDescriptions = {
-      A: 'Option A: React with laughing emojis and forward the meme of Leo crying to the other section to avoid being called a "killjoy" and fit in with the group.',
-      B: 'Option B: Stay quietly passive, mute notifications, and pretend you never saw the message to avoid drama and avoid becoming the next target.',
-      C: 'Option C: Refuse to react or forward (Agency). Call out the GC: "Guys, this is too much. Let\'s delete this, we are destroying someone" (Fortitude), and privately message Leo to reassure him he has an ally (Receptivity).'
+      A: 'Option A: Stay quiet and accept the group decision to leave the teammate’s idea and contribution out without checking the source.',
+      B: 'Option B: Publicly accuse the group of dishonesty and insist the idea be included before checking the source or hearing their reasons.',
+      C: 'Option C: Ask the teammate to explain the source, review it with the group, request fair credit, and seek ordinary course guidance if the concern remains.'
     };
 
-    const scenario = `Campus Dilemma: Javier is in a 15-member friend group chat. One night around 11:30 PM, the group leader posts an embarrassing photo of classmate Leo (secretly taken while crying over a failing grade), accompanied by an insulting meme: "Uy guys, tingnan niyo si Leo umiiyak haha! I-forward niyo sa kabilang section para kumalat at maging viral!" Everyone has reacted with laughing emojis. The leader pressures Javier to share it. If Javier does not cooperate, he will be called a "killjoy" and could be the group's next target.`;
+    const scenario = `Fictional college-life case, not an actual UMak incident: During a group-project meeting, a teammate offers a source and an idea for the report. The group dismisses it without checking, and a friend pressures Javier to stay quiet so they can finish quickly. Javier is unsure whether the source supports the idea.`;
 
-    userPrompt = `${scenario}\n\nThe student chose: ${choiceDescriptions[choice] || 'Unknown option'}\n\nAnalyze this choice using the four core virtues (Humility, Receptivity, Agency, Courage/Fortitude) and Philippine Law (RA 11313 Safe Spaces Act). What virtues were exercised or violated? What is the moral and legal consequence?`;
+    userPrompt = `${scenario}\n\nThe student chose: ${choiceDescriptions[choice] || 'Unknown option'}\n\nReflect on the choice using humility, receptivity, agency (as this project's working term), and fortitude. Explain one strength, one possible difficulty, and a proportionate next step. Do not assign numerical virtue scores.`;
 
   } else if (mode === 'custom') {
     // ── Relevance guard: NO API call for off-topic inputs ──────────────────────
@@ -104,7 +105,7 @@ export default async function handler(req, res) {
       });
     }
 
-    userPrompt = `Analyze this ethical dilemma using virtue ethics (von Hildebrand, Gray & Martin) and Philippine law where relevant. Give a moral evaluation and clear recommendation.\n\nDilemma: ${trimmed}`;
+    userPrompt = `Discuss this dilemma as a limited reflection, not an authoritative judgment. Use humility, receptivity, agency (the project's working term), and fortitude as lenses where relevant. Distinguish your application from claims made by the assigned authors, avoid legal conclusions, and offer proportionate options rather than a guaranteed outcome. Do not invent citations or numerical virtue scores.\n\nDilemma: ${trimmed}`;
 
   } else {
     return res.status(400).json({ error: 'Invalid mode. Use "choice" or "custom".' });

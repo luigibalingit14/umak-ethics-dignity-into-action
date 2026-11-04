@@ -1,11 +1,10 @@
 /**
  * UMak Ethics Project Application Logic — "Dignity, Courage, into Action"
- * Group 1 Lead: Luigi D. Balingit
- * Research Strand: Strand 3 (Cyberbullying and Peer Pressure)
+ * Group 3 research focus: speaking up under peer pressure
  * Features:
  * - Active tab switching across desktop nav, mobile drawer, and bottom quick dock
  * - Dark / Light theme toggle with local persistence and system pref sync
- * - Interactive Ethics Simulator with virtue impact scoring (Humility, Receptivity, Agency, Fortitude)
+ * - Interactive ethics reflection and evidence-matrix filters
  * - Evidence Matrix interactive filter pills
  * - Mobile responsive drawer & floating back-to-top handler
  */
@@ -198,33 +197,43 @@
       selectedBtn.style.borderColor = 'var(--color-secondary)';
     }
 
-    if (choice === 'A') {
-      titleEl.innerHTML = '<i class="bi bi-x-circle-fill" style="color: var(--color-error); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ff8a80;">Severe Moral Compromise: Peer Conformity &amp; Complicity</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> Forwarding Leo\'s crying photo and reacting with laughter violates <strong>Humility</strong> (Alice von Hildebrand, <em>The Privilege of Being a Woman</em>) by reducing a classmate\'s sacred dignity to an instrument for cheap entertainment and group validation. Surrendering your <strong>Agency</strong> (Gray &amp; Martin, <em>Boys to Men</em>) to herd conformity is no excuse: you are accountable for every click and share. Furthermore, under Philippine <strong>Republic Act No. 11313 (Safe Spaces Act)</strong>, spreading defamatory, unauthorized private photos online carries direct criminal liability, and colluding or forwarding makes you a legal accomplice.';
-      scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-dash-circle-fill" style="margin-right: 4px;"></i> Agency: 0/10 (Herd Mentality)</span>
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-shield-x" style="margin-right: 4px;"></i> Courage: 0/10 (Moral Cowardice)</span>
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-heartbreak-fill" style="margin-right: 4px;"></i> Humility: 0/10 (Clout over Dignity)</span>
-        <span class="sim-metric-badge" style="background: rgba(192, 57, 43, 0.35); color: #ff8a80;"><i class="bi bi-exclamation-octagon-fill" style="margin-right: 4px;"></i> RA 11313: Criminal Violation</span>
-      `;
-    } else if (choice === 'B') {
-      titleEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill" style="color: var(--color-warning); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #ffd54f;">Passive Bystander: Silent Complicity &amp; Moral Hesitation</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> While you avoided actively forwarding the harmful meme, passive silence in an exclusive GC is interpreted as implicit agreement. Failing to stop evil when you have the capacity to do so makes you a "co-agent" or accomplice to the harm. This choice lacks <strong>Courage / Fortitude</strong> (Gray &amp; Martin) out of fear of being labeled a "killjoy," and ignores <strong>Receptivity</strong> (von Hildebrand) by remaining numb to Leo\'s emotional trauma. Empirical research confirms cyberbullying accelerates when bystanders stay silent.';
-      scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-eye-slash-fill" style="margin-right: 4px;"></i> Courage: 2/10 (Fear of Isolation)</span>
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-pause-circle-fill" style="margin-right: 4px;"></i> Agency: 3/10 (Passive Inaction)</span>
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-ear-fill" style="margin-right: 4px;"></i> Receptivity: 2/10 (Numb to Pain)</span>
-        <span class="sim-metric-badge" style="background: rgba(184, 134, 11, 0.35); color: #ffd54f;"><i class="bi bi-arrow-repeat" style="margin-right: 4px;"></i> Campus Impact: Bullying Continues</span>
-      `;
-    } else if (choice === 'C') {
-      titleEl.innerHTML = '<i class="bi bi-check-circle-fill" style="color: var(--color-success); font-size: 1.15rem; margin-right: 6px;"></i> <span style="color: #a7f3d0;">Exemplary Moral Action: Four Core Virtues in Action</span>';
-      bodyEl.innerHTML = '<strong>Analysis:</strong> This choice reflects authentic moral maturity! You exercised <strong>Agency</strong> (Gray &amp; Martin) by refusing to follow the herd and cutting the viral supply chain. You demonstrated <strong>Courage / Fortitude</strong> by publicly speaking up in the GC: <em>"Guys, this is too much. Let\'s delete this, we are destroying someone."</em> You lived out <strong>Receptivity</strong> (von Hildebrand) by privately assuring Leo that he has an ally and is not alone. Finally, you embodied <strong>Humility</strong> by recognizing that human dignity is sacred and never an instrument for peer entertainment.';
-      scoreBar.innerHTML = `
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-shield-check" style="margin-right: 4px;"></i> Agency: 10/10 (Cut the Chain)</span>
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-megaphone-fill" style="margin-right: 4px;"></i> Courage: 10/10 (Public Stand)</span>
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-heart-fill" style="margin-right: 4px;"></i> Receptivity: 10/10 (Private Ally)</span>
-        <span class="sim-metric-badge" style="background: rgba(26, 122, 74, 0.35); color: #a7f3d0;"><i class="bi bi-patch-check-fill" style="margin-right: 4px;"></i> Humility: 10/10 (Honoring Dignity)</span>
-      `;
+    var reflections = {
+      A: {
+        title: 'Consider what is lost by staying quiet',
+        icon: 'bi bi-exclamation-triangle-fill',
+        color: 'var(--color-warning)',
+        text: 'Choosing not to raise the issue may avoid immediate conflict, but the contribution could remain unexamined and uncredited. This is a fictional scenario; silence alone does not establish wrongdoing or make someone legally responsible. Consider whether asking a calm question or seeking private guidance would be safer and more constructive.',
+        lenses: ['Humility: check your assumptions', 'Receptivity: hear the teammate', 'Agency: choose a next step']
+      },
+      B: {
+        title: 'Good aim, but check the approach',
+        icon: 'bi bi-exclamation-triangle-fill',
+        color: 'var(--color-warning)',
+        text: 'Wanting fair treatment is understandable, but accusing teammates before checking the source or hearing their reasons may shut down discussion. Courage need not mean confrontation. Ask what evidence is missing, then describe the specific concern without labeling anyone.',
+        lenses: ['Humility: remain open to correction', 'Prudence: verify before judging', 'Courage: speak without attacking']
+      },
+      C: {
+        title: 'A reasoned, proportionate option',
+        icon: 'bi bi-check-circle-fill',
+        color: 'var(--color-success)',
+        text: 'Listening, checking the source, and asking for fair credit combines receptivity with deliberate action. If the concern remains unresolved, a private, ordinary course channel is another option. This may help clarify the issue, but no response can guarantee agreement or a particular outcome.',
+        lenses: ['Receptivity: examine the contribution', 'Agency: decide and act', 'Fortitude: persist thoughtfully']
+      }
+    };
+    var reflection = reflections[choice];
+    if (reflection) {
+      titleEl.innerHTML = '<i class="' + reflection.icon + '" style="color: ' + reflection.color + '; font-size: 1.15rem; margin-right: 6px;"></i> <span>' + reflection.title + '</span>';
+      bodyEl.textContent = reflection.text;
+      scoreBar.replaceChildren();
+      reflection.lenses.forEach(function (lens) {
+        var badge = document.createElement('span');
+        badge.className = 'sim-metric-badge';
+        badge.textContent = lens;
+        scoreBar.appendChild(badge);
+      });
+    } else {
+      currentSimChoice = null;
+      return;
     }
 
     // Show AI button after choice
