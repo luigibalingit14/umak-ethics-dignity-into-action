@@ -380,7 +380,7 @@
     if (activeBtn) activeBtn.classList.add('active');
 
     // Filter table rows (Desktop)
-    var tableRows = document.querySelectorAll('.matrix-table tbody tr');
+    var tableRows = document.querySelectorAll('#section-matrix .matrix-table tbody tr');
     tableRows.forEach(function (row) {
       if (category === 'all' || row.getAttribute('data-category') === category) {
         row.style.display = '';
@@ -390,7 +390,7 @@
     });
 
     // Filter cards (Mobile)
-    var mobileCards = document.querySelectorAll('.matrix-card-item');
+    var mobileCards = document.querySelectorAll('#section-matrix .matrix-card-item');
     mobileCards.forEach(function (card) {
       if (category === 'all' || card.getAttribute('data-category') === category) {
         card.style.display = '';
